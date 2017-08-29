@@ -9,7 +9,7 @@ namespace PhotoLife.Data
     {
         public GenericRepository(IWebDevEntities dbContext)
         {
-            if (this.Context == null)
+            if (dbContext == null)
             {
                 throw new ArgumentNullException("Context cannot be null");
             }
