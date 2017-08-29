@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69E79B07-4687-4913-80CC-61B91C2C284D}</ProjectGuid>
+    <ProjectGuid>{FF2E2EB1-1A5E-4720-9A63-E296E1BAAAD9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebDev.Models</RootNamespace>
-    <AssemblyName>WebDev.Models</AssemblyName>
+    <RootNamespace>WebDev.Services</RootNamespace>
+    <AssemblyName>WebDev.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,8 +53,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebDev.Data\WebDev.Data.csproj">
+      <Project>{78818c68-1811-4816-beb5-fd69a28fba7d}</Project>
+      <Name>WebDev.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebDev.Models\WebDev.Models.csproj">
+      <Project>{69e79b07-4687-4913-80cc-61b91c2c284d}</Project>
+      <Name>WebDev.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
