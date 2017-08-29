@@ -1,0 +1,11 @@
+version: 1.0.{build}
+branches:
+  only:
+  - master
+ 
+before_build:
+- ps: nuget restore WebDev.Project\WebDev.Project.sln 
+ 
+build:
+  project: PhotoLife\PhotoLife.sln
+  verbosity: minimal  
