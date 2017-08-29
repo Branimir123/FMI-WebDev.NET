@@ -65,5 +65,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebDev.Models\WebDev.Models.csproj">
+      <Project>{69e79b07-4687-4913-80cc-61b91c2c284d}</Project>
+      <Name>WebDev.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
