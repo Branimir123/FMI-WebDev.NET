@@ -180,7 +180,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -257,6 +257,16 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebDev.Models\WebDev.Models.csproj">
+      <Project>{69E79B07-4687-4913-80CC-61B91C2C284D}</Project>
+      <Name>WebDev.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebDev.Services\WebDev.Services.csproj">
+      <Project>{ff2e2eb1-1a5e-4720-9a63-e296e1baaad9}</Project>
+      <Name>WebDev.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

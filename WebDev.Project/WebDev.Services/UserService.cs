@@ -30,6 +30,12 @@ namespace WebDev.Services
 
             this.unitOfWork = unitOfWork;
         }
+
+        public void Create(User user)
+        {
+            this.userRepository.Add(user);
+        }
+
         public IEnumerable<User> GetUsers()
         {
             return this.userRepository.GetAll
