@@ -16,8 +16,19 @@ namespace WebDev.Services
             IRepository<User> userRepository,
             IUnitOfWork unitOfWork)
         {
-            this.userRepository = userRepository ?? throw new ArgumentNullException("userRepository");
-            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException("unitOfWorks");
+            if (userRepository == null)
+            {
+                throw new ArgumentNullException("userRepository");
+            }
+
+            this.userRepository = userRepository;
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException("unitOfWorks");
+            }
+
+            this.unitOfWork = unitOfWork;
         }
         public IEnumerable<User> GetUsers()
         {
