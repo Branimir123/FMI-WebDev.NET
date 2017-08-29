@@ -22,6 +22,7 @@ namespace WebDev.Project.Controllers
             this.userService = userService;
         }
 
+        //POST Users/Index
         [HttpPost]
         public Task<HttpResponseMessage> Index([FromBody] User user)
         {
@@ -29,7 +30,7 @@ namespace WebDev.Project.Controllers
             return Task.FromResult(Request.CreateResponse(HttpStatusCode.Created));
         }
 
-        // GET Users/Get/{id}
+        //GET Users/Get/{id}
         [HttpGet]
         public Task<HttpResponseMessage> Get(string id)
         {
