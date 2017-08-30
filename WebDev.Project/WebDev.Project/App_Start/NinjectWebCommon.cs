@@ -10,6 +10,7 @@ namespace WebDev.Project.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using WebDev.Project.App_Start.NinjectModules;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +62,9 @@ namespace WebDev.Project.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(new ServicesNinjectModule());
+            kernel.Load(new DataNinjectModule());
+            kernel.Load(new FactoriesNinjectModule());
         }        
     }
 }
