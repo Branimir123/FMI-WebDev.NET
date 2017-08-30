@@ -9,6 +9,8 @@ namespace WebDev.Services.Contracts
 
         IEnumerable<Topic> GetTopics();
 
+        IEnumerable<Topic> Get(int page, int size, string sortBy = "", string orderBy = "");
+
         Topic GetTopicById(int id);
     }
 }

@@ -14,12 +14,12 @@ namespace WebDev.Services
 
         public TopicService(IRepository<Topic> topicRepository, IUnitOfWork unitOfWork)
         {
-            if(topicRepository == null)
+            if (topicRepository == null)
             {
                 throw new ArgumentNullException("Topic Repository");
             }
 
-            if(unitOfWork == null)
+            if (unitOfWork == null)
             {
                 throw new ArgumentNullException("Unit Of Work");
             }
@@ -30,6 +30,33 @@ namespace WebDev.Services
         public void Create(Topic topic)
         {
             this.topicRepository.Add(topic);
+        }
+
+        public IEnumerable<Topic> Get(int page, int size, string sortBy = "", string orderBy = "")
+        {
+            bool sort = (sortBy == "name") ? true : false;
+
+            var res = this.topicRepository
+               .GetAll
+               .Select(t => t)
+               .Skip((page - 1) * size)
+               .Take(size);
+
+            if (orderBy == "asc")
+            {
+                res = sort ?
+                    res.OrderBy(t => t.Name)
+                    : res.OrderBy(t => t.Words.Count);
+
+            }
+            else
+            {
+                res = sort ?
+                   res.OrderBy(t => t.Name)
+                   : res.OrderBy(t => t.Words.Count);
+            }
+
+            return res;
         }
 
         public Topic GetTopicById(int id)

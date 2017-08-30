@@ -1,15 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebDev.Models
 {
     public class Topic
     {
-        public Topic() { }
-        public Topic(string name, string word, User author)
+        private ICollection<Word> words;
+
+        public Topic()
+        {
+            this.words = new HashSet<Word>();
+        }
+
+        public Topic(string name, User author)
         {
             this.Name = name;
-            this.Word = word;
             this.Author = author;
         }
 
@@ -17,12 +23,23 @@ namespace WebDev.Models
         public int TopicId { get; set; }
 
         public string Name { get; set; }
-
-        public string Word { get; set; }
-
+        
         [ForeignKey("Author")]
         public string UserId { get; set; }
 
         public virtual User Author { get; set; }
+
+        public virtual ICollection<Word> Words
+        {
+            get
+            {
+                return this.words;
+            }
+
+            set
+            {
+                this.words = value;
+            }
+        }
     }
 }
