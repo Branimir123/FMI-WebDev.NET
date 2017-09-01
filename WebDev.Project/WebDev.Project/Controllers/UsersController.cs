@@ -12,6 +12,11 @@ namespace WebDev.Project.Controllers
     {
         private readonly IUserService userService;
 
+        public UsersController()
+        {
+            
+        }
+
         public UsersController(IUserService userService)
         {
             if (userService == null)
