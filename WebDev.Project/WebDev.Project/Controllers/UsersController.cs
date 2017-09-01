@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WebDev.Models;
+using WebDev.Project.Models;
 using WebDev.Services.Contracts;
 
 namespace WebDev.Project.Controllers
@@ -21,21 +21,53 @@ namespace WebDev.Project.Controllers
 
             this.userService = userService;
         }
-
-        //POST Users/Index
+        
+        [Route("api/users/register")]
         [HttpPost]
-        public Task<HttpResponseMessage> Index([FromBody] User user)
+        public Task<HttpResponseMessage> Register([FromBody] RegisterUser userInfo)
         {
-            this.userService.Create(user);
-            return Task.FromResult(Request.CreateResponse(HttpStatusCode.Created));
-        }
+            //TODO check if user exists, if it does return something else
 
-        //GET Users/Get/{id}
-        [HttpGet]
-        public Task<HttpResponseMessage> Get(string id)
+            var user = this.userService.Register(
+                userInfo.UserName,
+                userInfo.Password,
+                userInfo.FullName,
+                userInfo.Email
+                );
+
+            if (user != null)
+            {
+                var registeredUser = new ReadyUser(
+                    user.UserId,
+                    user.UserName,
+                    user.PasswordHash,
+                    user.Name,
+                    user.Email,
+                    user.IsAdmin
+                    );
+
+                return Task.FromResult(Request.CreateResponse(HttpStatusCode.Created, registeredUser));
+
+            }
+            else
+            {
+                return Task.FromResult(Request.CreateResponse(HttpStatusCode.Conflict));
+            }
+
+        }
+        
+        [Route("api/users/login")]
+        [HttpPost]
+        public Task<HttpResponseMessage> Login([FromBody] LoginUser login)
         {
-            var user = userService.GetUserById(id);
-            return Task.FromResult(Request.CreateResponse(HttpStatusCode.OK, user));
+            string authKey = this.userService.Login(login.Username, login.Password);
+
+            if (authKey != string.Empty)
+            {
+                return Task.FromResult(Request.CreateResponse(HttpStatusCode.Created, authKey));
+            }
+
+            return Task.FromResult(Request.CreateResponse(HttpStatusCode.Forbidden));
         }
     }
 }

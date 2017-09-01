@@ -4,6 +4,6 @@ namespace WebDev.Factories
 {
     public interface IUserFactory
     {
-        User CreateUser(string username, string email, string name, string description);
+        User CreateUser(string username, string password, string email, string name);
     }
 }

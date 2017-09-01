@@ -64,6 +64,10 @@
       <Project>{78818c68-1811-4816-beb5-fd69a28fba7d}</Project>
       <Name>WebDev.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebDev.Factories\WebDev.Factories.csproj">
+      <Project>{565FA0EC-ADFB-4684-92F2-B3A89651CC8A}</Project>
+      <Name>WebDev.Factories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebDev.Models\WebDev.Models.csproj">
       <Project>{69e79b07-4687-4913-80cc-61b91c2c284d}</Project>
       <Name>WebDev.Models</Name>
