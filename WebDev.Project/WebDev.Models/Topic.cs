@@ -25,7 +25,7 @@ namespace WebDev.Models
         public string Name { get; set; }
         
         [ForeignKey("Author")]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual User Author { get; set; }
 

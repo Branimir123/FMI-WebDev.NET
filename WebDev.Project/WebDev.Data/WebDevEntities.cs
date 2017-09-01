@@ -4,12 +4,12 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using WebDev.Data.Contracts;
 using WebDev.Models;
 
-namespace PhotoLife.Data
+namespace WebDev.Data
 {
-    public class WebDevEntities : IdentityDbContext<User>, IWebDevEntities
+    public class WebDevEntities : DbContext, IWebDevEntities
     {
         public WebDevEntities()
-            : base("PhotoLifeDb", throwIfV1Schema: false)
+            : base("WordGameDb")
         {
             this.Configuration.AutoDetectChangesEnabled = true;
 
@@ -30,9 +30,11 @@ namespace PhotoLife.Data
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
-        //public DbSet<News> News { get; set; }
+        public IDbSet<User> Users { get; set; }
 
-        // TODO: ADD MODELS HERE
+        public IDbSet<Topic> Topics { get; set; }
+
+        public IDbSet<Word> Words { get; set; }
 
         public IDbSet<TEntity> DbSet<TEntity>() where TEntity : class
         {

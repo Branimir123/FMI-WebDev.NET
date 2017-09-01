@@ -1,29 +1,54 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Collections.Generic;
 
 namespace WebDev.Models
 {
-    public class User : IdentityUser
+    public class User
     {
-        public User() : base(string.Empty) {}
+        private ICollection<Topic> topics;
+        private ICollection<Word> words;
 
-        public User(string username, string email, string name, string description)
+        public User()
         {
-            this.UserName = username;
-            this.Email = email;
-            this.Name = name;
-            this.Description = description;
+            this.topics = new HashSet<Topic>();
+            this.words = new HashSet<Word>();
         }
+
+        public User(string userName, string passwordHash, string name, string email, string description) : this()
+        {
+            this.UserName = userName;
+            this.PasswordHash = passwordHash;
+            this.Name = name;
+            this.Email = email;
+            this.Description = description;
+            this.AuthKey = string.Empty;
+        }
+
+        public int UserId { get; set; }
+
+        public string UserName { get; set; }
+
+        public string PasswordHash { get; set; }
 
         public string Name { get; set; }
 
+        public string Email { get; set; }
+
         public string Description { get; set; }
-        
-        public Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+
+        public bool IsAdmin { get; set; }
+
+        public string AuthKey { get; set; }
+
+        public virtual ICollection<Topic> Topics
         {
-            return manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            get { return this.topics; }
+            set { this.topics = value; }
+        }
+
+        public virtual ICollection<Word> Posts
+        {
+            get { return this.words; }
+            set { this.words = value; }
         }
     }
 }

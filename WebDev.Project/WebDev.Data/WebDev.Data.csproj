@@ -57,6 +57,15 @@
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Contracts\IWebDevEntities.cs" />
     <Compile Include="EfGenericRepository.cs" />
+    <Compile Include="Migrations\201709011637216_Initial.cs" />
+    <Compile Include="Migrations\201709011637216_Initial.Designer.cs">
+      <DependentUpon>201709011637216_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709011700341_Models.cs" />
+    <Compile Include="Migrations\201709011700341_Models.Designer.cs">
+      <DependentUpon>201709011700341_Models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="WebDevEntities.cs" />
@@ -70,6 +79,14 @@
       <Project>{69e79b07-4687-4913-80cc-61b91c2c284d}</Project>
       <Name>WebDev.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709011637216_Initial.resx">
+      <DependentUpon>201709011637216_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709011700341_Models.resx">
+      <DependentUpon>201709011700341_Models.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
